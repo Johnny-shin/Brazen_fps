@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class PlayerMovementScript : MonoBehaviour {
 	Rigidbody rb;
 
+    //private static ClassType instance = null;
+
     public static bool GameIsPaused = false;
 	[Tooltip("Current players speed")]
 	public float currentSpeed;
@@ -26,7 +28,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		cameraMain = transform.FindChild("Main Camera").transform;
 		bulletSpawn = cameraMain.FindChild ("BulletSpawn").transform;
 		ignoreLayer = 1 << LayerMask.NameToLayer ("Player");
-
+        DontDestroyOnLoad(transform.gameObject);
 	}
 	private Vector3 slowdownV;
 	private Vector2 horizontalMovement;
@@ -76,11 +78,11 @@ public class PlayerMovementScript : MonoBehaviour {
 			deaccelerationSpeed = 0.1f;
 		}
 
-        //if (Input.GetKey(KeyCode.Escape))
-        //{
-        //    SceneManager.LoadScene(2);
-        //    //SceneManager.
-        //}
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(2);
+            //SceneManager.
+        }
     }
 	/*
 	* Handles jumping and ads the force and sounds.
@@ -108,18 +110,11 @@ public class PlayerMovementScript : MonoBehaviour {
 
 		WalkingSound ();
 
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
-	}//end update
+        //if (Input.GetKey(KeyCode.Escape))
+        //{
+        //    SceneManager.LoadScene(2);
+        //}
+    }//end update
 
 	/*
 	* Checks if player is grounded and plays the sound accorindlgy to his speed
@@ -343,17 +338,6 @@ public class PlayerMovementScript : MonoBehaviour {
 			}
 		} 
 	}
-
-    void Resume()
-    {
-
-    }
-    void Pause()
-    {
-        //p
-    }
-
-
 
     private GameObject myBloodEffect;
 
