@@ -20,4 +20,14 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void MainMenuScene()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(1);
+    }
+
 }
