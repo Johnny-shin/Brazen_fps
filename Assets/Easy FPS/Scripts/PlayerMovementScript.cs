@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovementScript : MonoBehaviour {
 	Rigidbody rb;
 
+    public static bool GameIsPaused = false;
 	[Tooltip("Current players speed")]
 	public float currentSpeed;
 	[Tooltip("Assign players camera here")]
@@ -72,7 +75,13 @@ public class PlayerMovementScript : MonoBehaviour {
 		} else {
 			deaccelerationSpeed = 0.1f;
 		}
-	}
+
+        //if (Input.GetKey(KeyCode.Escape))
+        //{
+        //    SceneManager.LoadScene(2);
+        //    //SceneManager.
+        //}
+    }
 	/*
 	* Handles jumping and ads the force and sounds.
 	*/
@@ -99,7 +108,17 @@ public class PlayerMovementScript : MonoBehaviour {
 
 		WalkingSound ();
 
-
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            if (GameIsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
 	}//end update
 
 	/*
@@ -324,7 +343,19 @@ public class PlayerMovementScript : MonoBehaviour {
 			}
 		} 
 	}
-	private GameObject myBloodEffect;
+
+    void Resume()
+    {
+
+    }
+    void Pause()
+    {
+        //p
+    }
+
+
+
+    private GameObject myBloodEffect;
 
 
 	[Header("Player SOUNDS")]
